@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 
 export default function AuthorTemplate({ data }) {
@@ -15,6 +15,14 @@ export default function AuthorTemplate({ data }) {
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>
+        <h2>Posts</h2>
+        <ul>
+          {frontmatter.author_label.map(post => (
+            <li key={post.frontmatter.path}>
+              <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </Layout>
   )
@@ -27,6 +35,12 @@ export const pageQuery = graphql`
       frontmatter {
         path
         title
+        author_label {
+          frontmatter {
+            path
+            title
+          }
+        }
       }
     }
   }
