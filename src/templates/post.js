@@ -1,10 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Layout from '../components/layout'
 
 export default function PostTemplate({ data }) {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
+  const author = frontmatter.author.frontmatter
   return (
     <Layout>
       <div className="blog-post-container">
@@ -14,6 +16,9 @@ export default function PostTemplate({ data }) {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+          <p>Author:
+            <Link to={author.path}>{author.title}</Link>
+          </p>
         </div>
       </div>
     </Layout>
@@ -27,6 +32,12 @@ export const pageQuery = graphql`
       frontmatter {
         path
         title
+        author {
+          frontmatter {
+            path
+            title
+          }
+        }
       }
     }
   }
