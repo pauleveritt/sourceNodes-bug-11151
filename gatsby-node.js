@@ -7,6 +7,7 @@ exports.createPages = ({ actions, graphql }) => {
   const templates =
     {
       post: path.resolve(`src/templates/post.js`),
+      topic: path.resolve(`src/templates/topic.js`),
       author: path.resolve(`src/templates/author.js`)
     }
 

@@ -6,7 +6,6 @@ import Layout from '../components/layout'
 export default function PostTemplate({ data }) {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
-  const author = frontmatter.author.frontmatter
   return (
     <Layout>
       <div className="blog-post-container">
@@ -16,9 +15,15 @@ export default function PostTemplate({ data }) {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
           />
-          <p>Author:
-            <Link to={author.path}>{author.title}</Link>
-          </p>
+          <h2>Author</h2>
+          <p><Link to={frontmatter.author.frontmatter.path}>{frontmatter.author.frontmatter.title}</Link></p>
+          <h2>Topics</h2>
+          <ul>
+            <li>
+              <Link to={frontmatter.topics[0].frontmatter.path}>{frontmatter.topics[0].frontmatter.title}</Link>
+            </li>
+          </ul>
+
         </div>
       </div>
     </Layout>
@@ -33,6 +38,12 @@ export const pageQuery = graphql`
         path
         title
         author {
+          frontmatter {
+            path
+            title
+          }
+        }
+        topics {
           frontmatter {
             path
             title

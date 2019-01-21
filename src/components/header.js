@@ -42,6 +42,22 @@ const Header = ({ siteTitle }) => (
           marginRight: '2em',
         }}
       >Author One</Link>
+      <Link
+        to={`/topics/topic1`}
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          marginRight: '2em',
+        }}
+      >Topic One</Link>
+      <Link
+        to={`/topics/topic2`}
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          marginRight: '2em',
+        }}
+      >Topic Two</Link>
     </div>
   </div>
 )

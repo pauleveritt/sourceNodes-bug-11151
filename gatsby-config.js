@@ -1,6 +1,7 @@
 module.exports = {
   mapping: {
     'MarkdownRemark.frontmatter.author': `MarkdownRemark.frontmatter.author_label`,
+    'MarkdownRemark.frontmatter.topics': `MarkdownRemark.frontmatter.topic_label`,
   },
   siteMetadata: {
     title: `Gatsby Default Starter`,
