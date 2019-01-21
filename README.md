@@ -14,9 +14,11 @@ frontmatter.
 4) Made a reverse 1:N mapping from author -> posts. It works but only returns a single 
 post. Ditto for topics.
 
-## Problem
+## Problems
 
-However, no changes after `gatsby develop` starts up are reflected in the content author's 
+First, 1:N on the reverse isn't supported (final bullet above.)
+
+Worse, no changes after `gatsby develop` starts up are reflected in the content author's 
 browser. To recreate:
 
 - Run `gatsby develop`
