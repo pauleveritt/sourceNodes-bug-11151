@@ -42,3 +42,6 @@ and [reverse relationships](https://www.gatsbyjs.org/docs/create-source-plugin/#
 Why? Because that document and several tickets say to use the `sourceNodes` API to create a 
 new `field` with the `id` value/values of the other end of the relationship. `sourceNodes` 
 never fires after startup. So as you edit content, fixing relationships never runs. 
+
+In some cases, it appears even restart doesn't help, and you have to `rm -rf .cache/*` to 
+trigger updating of relationships.
