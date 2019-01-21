@@ -1,7 +1,7 @@
 ---
+type: "post"
 path: "/blog/hello"
-date: "2017-11-07"
-title: "Hello Blog Posts"
+title: "Hello Blog"
 ---
 
 Let's recreate a bug.
