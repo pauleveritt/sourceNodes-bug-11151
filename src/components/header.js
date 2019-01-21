@@ -16,17 +16,24 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <Link
+        to="/"
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          marginRight: '2em',
+        }}
+      >
+        {siteTitle}
+      </Link>
+      <Link
+        to={`/blog/hello`}
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          marginRight: '2em',
+        }}
+      >First Blog Post</Link>
     </div>
   </div>
 )

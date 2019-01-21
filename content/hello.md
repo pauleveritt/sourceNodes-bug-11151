@@ -1,8 +1,7 @@
 ---
-path: "/blog/my-first-post"
+path: "/blog/hello"
 date: "2017-11-07"
-title: "My first blog post"
+title: "Hello Blog Posts"
 ---
-# sourceNodes
 
 Let's recreate a bug.
