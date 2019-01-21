@@ -34,6 +34,14 @@ const Header = ({ siteTitle }) => (
           marginRight: '2em',
         }}
       >First Blog Post</Link>
+      <Link
+        to={`/authors/author1`}
+        style={{
+          color: `white`,
+          textDecoration: `none`,
+          marginRight: '2em',
+        }}
+      >Author One</Link>
     </div>
   </div>
 )
