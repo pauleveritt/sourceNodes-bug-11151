@@ -15,6 +15,9 @@ export default function TopicTemplate({ data }) {
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>
+        <h2>Posts</h2>
+        <p><em>Backward refernces using <code>gatsby-config</code>
+          mapping only produces on item, so skipping.</em></p>
       </div>
     </Layout>
   )

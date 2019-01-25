@@ -1,4 +1,9 @@
-# Recreate sourceNodes mapping Issue
+# Recreate ``mapping`` Issue
+
+Doing forward/backwards references as instructed means content authors have 
+to delete caches frequently.
+
+## Steps
 
 This repo is to reproduce the [reported issue](https://github.com/gatsbyjs/gatsby/issues/11151).
 
@@ -14,34 +19,37 @@ frontmatter.
 4) Made a reverse 1:N mapping from author -> posts. It works but only returns a single 
 post. Ditto for topics.
 
+5) Change the `title` of `author1` and see it isn't reflected when viewing `post1`. 
+It never will, unless you either (a) hand-edit all posts or (b) clear `.cache/*`.
+
 ## Problems
 
-First, 1:N on the reverse isn't supported (final bullet above.)
+1) *Changing target metadata doesn't change source*. If you change the `title` of an author, 
+`gatsby develop` logs that the file changes, but it doesn't update the rendered post that 
+refers to the author. Re-starting `gatsby develop` doesn't refresh it either. You have 
+make a small edit to all posts that refer to it, or `rm -rf .cache/*`
 
-Worse, no changes after `gatsby develop` starts up are reflected in the content author's 
-browser. To recreate:
+What's worse...`gatsby build` doesn't update the posts. You have to 
+`rm -rf public/*`
 
-- Run `gatsby develop`
+2) *Backward mapping half-works*. If it is a 1:1 backward reference, it works. If 
+the reference should produce multiple results as 1:N, you don't get an array, 
+you just get the first item.
 
-- Go to `http://localhost:8000/blog/hello` and view a post's author's `title`
+## Discussion
 
-- Open `content/author.md` for editing
-
-- Edit the `title`
-
-- Note that nothing changes in the browser
-
-Diagnosis: If this relationship was being resolved in a page query, it would show up.
-
-## `sourceNodes`
-
-It would be *great* if `mapping` could do reverse as well as forward, rather than me using `sourceNodes` to 
-maintain [forward relationships](https://www.gatsbyjs.org/docs/create-source-plugin/#creating-the-relationship) 
+This is true when doing the mapping manually with `sourceNodes` as described in 
+the docs on [forward relationships](https://www.gatsbyjs.org/docs/create-source-plugin/#creating-the-relationship) 
 and [reverse relationships](https://www.gatsbyjs.org/docs/create-source-plugin/#creating-the-reverse-relationship).
 
 Why? Because that document and several tickets say to use the `sourceNodes` API to create a 
 new `field` with the `id` value/values of the other end of the relationship. `sourceNodes` 
 never fires after startup. So as you edit content, fixing relationships never runs. 
 
-In some cases, it appears even restart doesn't help, and you have to `rm -rf .cache/*` to 
+It appears even restart doesn't help, and you have to `rm -rf .cache/*` to 
 trigger updating of relationships.
+
+## Conclusion
+
+If you value content authors, don't do relationships with the APIs. Recreate the universe 
+in all your page queries.

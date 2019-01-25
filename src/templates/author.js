@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 
 export default function AuthorTemplate({ data }) {
@@ -16,13 +16,8 @@ export default function AuthorTemplate({ data }) {
           />
         </div>
         <h2>Posts</h2>
-        <ul>
-          {frontmatter.author_label.map(post => (
-            <li key={post.frontmatter.path}>
-              <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <p><em>Backward refernces using <code>gatsby-config</code>
+          mapping only produces on item, so skipping.</em></p>
       </div>
     </Layout>
   )

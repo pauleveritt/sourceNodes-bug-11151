@@ -16,14 +16,25 @@ export default function PostTemplate({ data }) {
             dangerouslySetInnerHTML={{ __html: html }}
           />
           <h2>Author</h2>
-          <p><Link to={frontmatter.author.frontmatter.path}>{frontmatter.author.frontmatter.title}</Link></p>
-          <h2>Topics</h2>
-          <ul>
-            <li>
-              <Link to={frontmatter.topics[0].frontmatter.path}>{frontmatter.topics[0].frontmatter.title}</Link>
-            </li>
-          </ul>
-
+          <p>
+            <Link to={frontmatter.author.frontmatter.path}>
+              {frontmatter.author.frontmatter.title}
+            </Link>
+          </p>
+          {frontmatter.topics.length > 0 && (
+            <>
+              <h2>Topics</h2>
+              <ul>
+                {frontmatter.topics.map(topic => (
+                  <li key={topic.frontmatter.path}>
+                    <Link to={topic.frontmatter.path}>
+                      {topic.frontmatter.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </Layout>
